@@ -48,7 +48,7 @@ gh pr create --title "BU-X: Nombre" --base master
 ```
 
 - Un branch + un PR + un commit por ticket.
-- RFs que forman una sola operación atómica (e.g. BU-8/9/11/12/13 = módulo de transferencias) se agrupan en un branch y el PR referencia todos.
+- RFs que forman una sola operación atómica (e.g. BU-8/9/11/12 = módulo de transferencias) se agrupan en un branch y el PR referencia todos.
 - Después de abrir el PR, **avisar al usuario** y esperar su aprobación antes de hacer merge.
 - Formato de commit: `feat(BU-X): ...` / `fix(BU-X): ...` / `chore(BU-X): ...`
 
@@ -116,14 +116,20 @@ Usar `422` para violaciones de reglas de negocio (monto bajo, límite diario, sa
 | USER | ana.gonzalez@bancoUP.mx | Ana01! | 2345678901234567 | $25,400.00 |
 | USER | carlos.reyes@bancoUP.mx | Carl1! | 3456789012345678 | $39,750.00 |
 
-## Trazabilidad BU-X → implementación
+## Backlog — tickets en alcance
 
-| Tickets | Branch | Contenido |
-|---------|--------|-----------|
-| BU-25 | `chore/BU-25-scaffold` | Scaffold Node+TS+Express+Prisma+Vitest |
-| BU-30,32,33,34 | `feat/BU-30-db-seed` | Schema Prisma + migración + seed + Zod validators |
-| BU-5,6,20,22,23 | `feat/BU-5-auth-login` | Login, JWT, bloqueo automático, bcrypt, policy |
-| BU-7 | `feat/BU-7-logout` | Logout + RevokedToken blacklist |
-| BU-8,9,11,12,13,17,18,24 | `feat/BU-11-transferencias` | Módulo completo de transferencias SERIALIZABLE |
-| BU-14,15 | `feat/BU-14-historial` | Historial paginado de movimientos |
-| BU-21 | `feat/BU-21-admin` | Panel admin: listar usuarios + desbloqueo con auditoría |
+Estos son los únicos tickets a implementar. No implementar nada fuera de esta lista.
+
+| Tickets | Branch | Estado |
+|---------|--------|--------|
+| BU-25 | `chore/BU-25-scaffold` | ✅ merged |
+| BU-30 | `feat/BU-30-db-seed` | ✅ en PR |
+| BU-5, BU-6, BU-20, BU-23 | `feat/BU-5-auth-login` | pendiente |
+| BU-7 | `feat/BU-7-logout` | pendiente |
+| BU-8, BU-9, BU-11, BU-12 | `feat/BU-11-transferencias` | pendiente |
+| BU-14 | `feat/BU-14-historial` | pendiente |
+| BU-21 | `feat/BU-21-admin` | pendiente |
+
+**BU-6** no es un endpoint — es consecuencia de emitir JWT sin `expiresIn`. Se implementa dentro de BU-5.
+**BU-23** ya tiene su validador Zod en `src/schemas/common.ts` (`passwordSchema`). Se conecta al login en BU-5.
+**No implementar** BU-13, BU-15, BU-17, BU-18, BU-22, BU-24 ni ningún ticket fuera de la lista.
