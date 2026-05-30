@@ -60,3 +60,6 @@ vite.svg
 # Misc
 tmp/
 temp/
+
+#deployment
+data/
