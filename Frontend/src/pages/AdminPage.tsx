@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Lock, Unlock, Search, LogOut, ChevronDown, Users, BookOpen, Shield, AlertTriangle } from 'lucide-react';
+import { Lock, Unlock, Search, LogOut, ChevronDown, Users, BookOpen, AlertTriangle } from 'lucide-react';
 import { adminApi, type AdminUser, type AdminAccount, type AdminLoginAttempt } from '../api/admin';
 import { useAuthStore } from '../store/authStore';
 import './AdminPage.css';
@@ -554,7 +554,7 @@ export default function AdminPage() {
     setModal({ user, action });
   }
 
-  async function confirmAction(reason?: string) {
+  async function confirmAction() {
     if (!modal) return;
     setActionLoading(true);
     try {

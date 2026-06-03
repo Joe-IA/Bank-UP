@@ -207,8 +207,6 @@ export default function InicioPage() {
     })
     .toUpperCase();
 
-  const monthLabel = now.toLocaleDateString('es-MX', { month: 'long', year: 'numeric' });
-
   const balanceParts =
     profile?.balance != null
       ? new Intl.NumberFormat('es-MX', {
@@ -406,7 +404,7 @@ export default function InicioPage() {
                 <YAxis hide />
                 <Tooltip
                   contentStyle={{ fontSize: 12, borderRadius: 8, border: '1px solid #E5E7EB' }}
-                  formatter={(v: number) => [fmt(v), 'Ingresos']}
+                  formatter={(v) => [fmt(Number(v ?? 0)), 'Ingresos']}
                   labelStyle={{ color: '#6B7280', marginBottom: 2 }}
                 />
                 <Area type="monotone" dataKey="ingresos" stroke="#16A34A" strokeWidth={2} fill="url(#gradIn)" dot={false} activeDot={{ r: 4 }} />
@@ -429,7 +427,7 @@ export default function InicioPage() {
                 <YAxis hide />
                 <Tooltip
                   contentStyle={{ fontSize: 12, borderRadius: 8, border: '1px solid #E5E7EB' }}
-                  formatter={(v: number) => [fmt(v), 'Egresos']}
+                  formatter={(v) => [fmt(Number(v ?? 0)), 'Egresos']}
                   labelStyle={{ color: '#6B7280', marginBottom: 2 }}
                 />
                 <Area type="monotone" dataKey="egresos" stroke="#2563EB" strokeWidth={2} fill="url(#gradOut)" dot={false} activeDot={{ r: 4 }} />

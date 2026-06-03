@@ -1,0 +1,26 @@
+services:
+
+  banking:
+    build:
+      context: ./Backend
+      dockerfile: container/Dockerfile
+    container_name: banking-app
+    env_file:
+      - ./Backend/.env
+    environment:
+      DB_PATH: /app/data/banking.db
+      NODE_ENV: production
+      PORT: 3000
+    volumes:
+      - ./Backend/data:/app/data
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./Frontend
+    container_name: bankup-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - banking
+    restart: unless-stopped
