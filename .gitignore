@@ -63,3 +63,10 @@ temp/
 
 #deployment
 data/
+
+# Claude
+.claude/
+CLAUDE.md
+
+# Docs
+docs/
