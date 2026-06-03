@@ -1,0 +1,215 @@
+/* ── Layout Shell ──────────────────────────────────────────── */
+.db-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100svh;
+}
+
+/* ── Topbar ────────────────────────────────────────────────── */
+.db-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+  padding: 0 24px;
+  background: #04132C;
+  flex-shrink: 0;
+}
+
+.db-topbar__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.db-topbar__wordmark strong {
+  font-weight: 700;
+}
+
+.db-topbar__right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.db-topbar__user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.db-topbar__avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #1a3a5c;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
+
+.db-topbar__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.db-topbar__name {
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.db-topbar__account {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.75rem;
+  line-height: 1.2;
+}
+
+.db-topbar__logout {
+  padding: 7px 16px;
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  background: transparent;
+  color: #fff;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.db-topbar__logout:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* ── Body ──────────────────────────────────────────────────── */
+.db-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* ── Sidebar ───────────────────────────────────────────────── */
+.db-sidebar {
+  width: 188px;
+  flex-shrink: 0;
+  background: #fff;
+  border-right: 1px solid #E5E7EB;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 12px;
+  overflow: hidden;
+}
+
+.db-sidebar__section {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #9CA3AF;
+  padding: 0 8px;
+  margin: 0 0 6px;
+}
+
+.db-sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.db-nav__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  font-size: 13px;
+  color: #6B7280;
+  padding: 8px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s;
+  text-decoration: none;
+  font-family: inherit;
+}
+
+.db-nav__item:hover {
+  background: #F9FAFB;
+  color: #0D1B2A;
+}
+
+.db-nav__item--active {
+  background: #04132C;
+  color: #fff;
+  font-weight: 500;
+}
+
+.db-nav__item--active:hover {
+  background: #0A2240;
+  color: #fff;
+}
+
+.db-nav__item--muted {
+  color: #6B7280;
+}
+
+/* ── Sidebar Bottom ────────────────────────────────────────── */
+.db-sidebar__bottom {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.db-session-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 10px;
+  border-left: 3px solid #04132C;
+  background: #F9FAFB;
+  border-radius: 0 6px 6px 0;
+}
+
+.db-session-box__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #16A34A;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.db-session-box__title {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #374151;
+  margin: 0 0 2px;
+}
+
+.db-session-box__sub {
+  font-size: 11px;
+  color: #6B7280;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* ── Content Area ──────────────────────────────────────────── */
+.db-content {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+  background: #F4F6F9;
+}

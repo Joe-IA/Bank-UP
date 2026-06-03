@@ -1,0 +1,229 @@
+.pf-page {
+  padding: 32px 36px;
+  min-height: 100%;
+  box-sizing: border-box;
+}
+
+/* ── Header ────────────────────────────────────────────────── */
+.pf-header {
+  margin-bottom: 24px;
+}
+
+.pf-eyebrow {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #9CA3AF;
+  margin: 0 0 4px;
+}
+
+.pf-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+/* ── Layout ────────────────────────────────────────────────── */
+.pf-body {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+/* ── Avatar Card ───────────────────────────────────────────── */
+.pf-card {
+  background: #fff;
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.pf-avatar-wrap {
+  text-align: center;
+  padding: 24px 20px 20px;
+  border-bottom: 1px solid #F3F4F6;
+}
+
+.pf-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: #04132C;
+  color: #fff;
+  font-size: 1.375rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px;
+  letter-spacing: 0.05em;
+}
+
+.pf-avatar-name {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 3px;
+}
+
+.pf-avatar-email {
+  font-size: 0.8125rem;
+  color: #6B7280;
+  margin: 0 0 12px;
+}
+
+.pf-badges {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+
+.pf-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 5px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.pf-badge--active {
+  background: #DCFCE7;
+  color: #15803D;
+}
+
+.pf-badge--role {
+  background: #EFF6FF;
+  color: #1D4ED8;
+}
+
+/* ── Meta List ─────────────────────────────────────────────── */
+.pf-meta-list {
+  padding: 4px 0;
+}
+
+.pf-meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 9px 18px;
+  font-size: 0.8125rem;
+  border-bottom: 1px solid #F9FAFB;
+}
+
+.pf-meta-row:last-child {
+  border-bottom: none;
+}
+
+.pf-meta-row__label {
+  color: #9CA3AF;
+}
+
+.pf-meta-row__value {
+  color: #374151;
+  font-weight: 500;
+  text-align: right;
+}
+
+.pf-meta-row__value--mono {
+  font-family: monospace;
+  font-size: 0.8125rem;
+}
+
+/* ── Right Column ──────────────────────────────────────────── */
+.pf-right {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ── Section ───────────────────────────────────────────────── */
+.pf-section {
+  background: #fff;
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.pf-section__header {
+  padding: 16px 20px;
+  border-bottom: 1px solid #F3F4F6;
+}
+
+.pf-section__title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 2px;
+}
+
+.pf-section__sub {
+  font-size: 0.75rem;
+  color: #9CA3AF;
+  margin: 0;
+}
+
+/* ── Info Grid ─────────────────────────────────────────────── */
+.pf-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.pf-field {
+  padding: 14px 20px;
+  border-bottom: 1px solid #F3F4F6;
+  border-right: 1px solid #F3F4F6;
+}
+
+.pf-field:nth-child(even) {
+  border-right: none;
+}
+
+.pf-field:nth-last-child(-n+2) {
+  border-bottom: none;
+}
+
+.pf-field__label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #9CA3AF;
+  margin: 0 0 4px;
+}
+
+.pf-field__value {
+  font-size: 0.9375rem;
+  color: #111827;
+  font-weight: 500;
+  margin: 0;
+}
+
+.pf-field__value--mono {
+  font-family: monospace;
+  letter-spacing: 0.03em;
+}
+
+/* ── Security Section ──────────────────────────────────────── */
+.pf-security-row {
+  padding: 14px 20px;
+  border-bottom: 1px solid #F3F4F6;
+}
+
+.pf-security-row:last-child {
+  border-bottom: none;
+}
+
+.pf-security-row__title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 2px;
+}
+
+.pf-security-row__sub {
+  font-size: 0.75rem;
+  color: #9CA3AF;
+  margin: 0;
+}
