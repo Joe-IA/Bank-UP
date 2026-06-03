@@ -3,8 +3,9 @@ import type { TransactionRow } from '../database/types.js';
 import { AppError } from '../utils/AppError.js';
 import { getAccountByUserId, getAccountByNumber } from './accountService.js';
 
-const MAX_BALANCE  = parseFloat(process.env.MAX_ACCOUNT_BALANCE ?? '1000000');
-const MIN_TRANSFER = parseFloat(process.env.MIN_TRANSFER_AMOUNT  ?? '1');
+const MAX_BALANCE   = parseFloat(process.env.MAX_ACCOUNT_BALANCE  ?? '1000000');
+const MIN_TRANSFER  = parseFloat(process.env.MIN_TRANSFER_AMOUNT  ?? '1');
+const DAILY_LIMIT   = parseFloat(process.env.DAILY_TRANSFER_LIMIT ?? '50000');
 
 // ── Interfaces ─────────────────────────────────────────────────────────────────
 
@@ -24,6 +25,22 @@ export interface TransferInput {
 export interface TransactionWithAccounts extends TransactionRow {
   origin_account_number: string | null;
   destination_account_number: string | null;
+}
+
+// ── Helpers ────────────────────────────────────────────────────────────────────
+
+function getDailyTransferTotal(accountId: number): number {
+  const db = getDb();
+  const row = db
+    .prepare(
+      `SELECT COALESCE(SUM(amount), 0) AS total
+       FROM transactions
+       WHERE type = 'transfer'
+         AND origin_account_id = ?
+         AND date(created_at) = date('now')`
+    )
+    .get(accountId) as { total: number };
+  return row.total;
 }
 
 // ── Service functions ──────────────────────────────────────────────────────────
@@ -79,6 +96,13 @@ export function transfer({
 
     if (origin.balance < amount)
       throw new AppError('Insufficient funds', 400);
+
+    const dailyTotal = getDailyTransferTotal(origin.id);
+    if (dailyTotal + amount > DAILY_LIMIT)
+      throw new AppError(
+        `Daily transfer limit of ${DAILY_LIMIT} would be exceeded (used: ${dailyTotal}, requested: ${amount})`,
+        400
+      );
 
     const newOriginBalance      = origin.balance - amount;
     const newDestinationBalance = destination.balance + amount;
