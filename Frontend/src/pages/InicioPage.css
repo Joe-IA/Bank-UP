@@ -1,0 +1,480 @@
+.in-page {
+  padding: 32px 36px;
+  min-height: 100%;
+  box-sizing: border-box;
+}
+
+/* ── Header ────────────────────────────────────────────────── */
+.in-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.in-header__date {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #9CA3AF;
+  margin: 0 0 4px;
+}
+
+.in-header__greeting {
+  font-size: 2rem;
+  font-weight: 300;
+  color: #111827;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.in-loading {
+  opacity: 0.4;
+}
+
+.in-header__actions {
+  display: flex;
+  gap: 10px;
+  padding-top: 6px;
+  flex-shrink: 0;
+}
+
+/* ── Buttons ───────────────────────────────────────────────── */
+.in-btn {
+  padding: 9px 20px;
+  border-radius: 9px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s;
+  border: none;
+}
+
+.in-btn:hover {
+  opacity: 0.85;
+}
+
+.in-btn--primary {
+  background: #04132C;
+  color: #fff;
+}
+
+.in-btn--secondary {
+  background: #fff;
+  color: #04132C;
+  border: 1.5px solid #D1D5DB;
+}
+
+/* ── Balance Card ──────────────────────────────────────────── */
+.in-balance-card {
+  background: #04132C;
+  border-radius: 16px;
+  padding: 28px 32px;
+  margin-bottom: 16px;
+}
+
+.in-balance-card__label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0 0 10px;
+}
+
+.in-balance-card__amount {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.in-balance-card__amount span {
+  font-size: 1.75rem;
+  font-weight: 400;
+  opacity: 0.7;
+}
+
+.in-balance-card__meta {
+  display: flex;
+  gap: 32px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.in-balance-card__meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.in-balance-card__meta-label {
+  font-size: 0.6875rem;
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 600;
+  letter-spacing: 0.07em;
+}
+
+.in-balance-card__meta-value {
+  font-size: 0.9375rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Quick Actions ─────────────────────────────────────────── */
+.in-quick-actions {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.in-quick-card {
+  background: #fff;
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  padding: 16px;
+  text-decoration: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: box-shadow 0.15s, border-color 0.15s;
+  text-align: left;
+  font-family: inherit;
+}
+
+.in-quick-card:hover {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
+  border-color: #D1D5DB;
+}
+
+.in-quick-card__left {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.in-quick-card__title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.in-quick-card__sub {
+  font-size: 0.75rem;
+  color: #9CA3AF;
+}
+
+.in-quick-card__arrow {
+  color: #9CA3AF;
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+/* ── Bottom Row ────────────────────────────────────────────── */
+.in-bottom {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 16px;
+  align-items: start;
+}
+
+/* ── Recent Transactions ───────────────────────────────────── */
+.in-recent {
+  background: #fff;
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.in-recent__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 2px;
+}
+
+.in-recent__title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+}
+
+.in-recent__link {
+  font-size: 0.8125rem;
+  color: #2563EB;
+  text-decoration: none;
+}
+
+.in-recent__link:hover {
+  text-decoration: underline;
+}
+
+.in-recent__sub {
+  font-size: 0.75rem;
+  color: #9CA3AF;
+  margin: 0 0 14px;
+}
+
+.in-tx-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid #F3F4F6;
+}
+
+.in-tx-row:last-child {
+  border-bottom: none;
+}
+
+.in-tx-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.in-tx-icon--in {
+  background: #DCFCE7;
+  color: #16A34A;
+}
+
+.in-tx-icon--out {
+  background: #F3F4F6;
+  color: #6B7280;
+}
+
+.in-tx-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.in-tx-name {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #111827;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.in-tx-meta {
+  font-size: 0.75rem;
+  color: #9CA3AF;
+  margin: 0;
+}
+
+.in-tx-right {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.in-tx-amount {
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  margin: 0 0 3px;
+}
+
+.in-tx-amount--in {
+  color: #16A34A;
+}
+
+.in-tx-amount--out {
+  color: #111827;
+}
+
+.in-tx-badge {
+  display: inline-block;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+
+.in-tx-badge--in {
+  background: #DCFCE7;
+  color: #15803D;
+}
+
+.in-tx-badge--transfer {
+  background: #EFF6FF;
+  color: #1D4ED8;
+}
+
+.in-empty {
+  text-align: center;
+  padding: 24px;
+  color: #9CA3AF;
+  font-size: 0.875rem;
+}
+
+/* ── Month Summary ─────────────────────────────────────────── */
+.in-summary {
+  background: #fff;
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.in-summary__title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 2px;
+}
+
+.in-summary__period {
+  font-size: 0.75rem;
+  color: #9CA3AF;
+  margin: 0 0 20px;
+}
+
+.in-summary__row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.in-summary__col {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.in-summary__col--right {
+  text-align: right;
+}
+
+.in-summary__label {
+  font-size: 0.75rem;
+  color: #9CA3AF;
+  font-weight: 500;
+}
+
+.in-summary__value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+.in-summary__value--in {
+  color: #16A34A;
+}
+
+.in-summary__value--out {
+  color: #DC2626;
+}
+
+.in-summary__totals {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+/* ── Charts ────────────────────────────────────────────────── */
+.in-chart-block {
+  margin-bottom: 16px;
+}
+
+.in-chart-block:last-child {
+  margin-bottom: 0;
+}
+
+.in-chart-block__label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  color: #9CA3AF;
+  margin: 0 0 6px;
+}
+
+/* ── Deposit Modal ─────────────────────────────────────────── */
+.in-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.in-modal {
+  background: #fff;
+  border-radius: 16px;
+  padding: 28px 28px 24px;
+  width: 420px;
+  max-width: calc(100vw - 32px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+.in-modal__eyebrow {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #9CA3AF;
+  margin: 0 0 6px;
+}
+
+.in-modal__title {
+  font-size: 1.375rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 20px;
+}
+
+.in-modal__field {
+  margin-bottom: 14px;
+}
+
+.in-modal__label {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 6px;
+}
+
+.in-modal__input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid #D1D5DB;
+  border-radius: 9px;
+  font-size: 0.9375rem;
+  color: #111827;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.15s;
+  font-family: inherit;
+}
+
+.in-modal__input:focus {
+  border-color: #04132C;
+}
+
+.in-modal__actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.in-modal__actions .in-btn {
+  flex: 1;
+}
+
+.in-modal__error {
+  font-size: 0.8125rem;
+  color: #DC2626;
+  margin: 8px 0 0;
+}
