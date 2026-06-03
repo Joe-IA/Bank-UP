@@ -46,7 +46,13 @@ router.post(
   '/transfer',
   [
     body('destinationAccountNumber').notEmpty().withMessage('Destination account number is required'),
-    body('amount').isFloat({ gt: 0 }).withMessage('Amount must be a positive number'),
+    body('amount')
+      .isFloat({ gt: 0 }).withMessage('Amount must be a positive number')
+      .custom((val: string) => {
+        const min = parseFloat(process.env.MIN_TRANSFER_AMOUNT ?? '1');
+        if (parseFloat(val) < min) throw new Error(`Amount must be at least ${min}`);
+        return true;
+      }),
     body('description').optional().isString().trim(),
   ],
   validate,
