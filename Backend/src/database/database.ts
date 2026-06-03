@@ -13,6 +13,13 @@ export function getDb(): DatabaseSync {
     return db;
 }
 
+export function closeDb(): void {
+  if (db) {
+    db.close();
+    db = null;
+  }
+}
+
 export function withTransaction<T>(fn: (db:DatabaseSync) => T): T {
     const database = getDb();
     database.exec("BEGIN");
