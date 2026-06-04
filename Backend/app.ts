@@ -12,15 +12,17 @@ import accountRoutes from './routes/accounts.routes.js';
 import transactionRoutes from './routes/transactions.routes.js';
 import adminRoutes from './routes/admin.routes.js';
 
+// Inicializa el esquema y siembra datos de prueba si la BD está vacía.
 initializeDatabase();
 
 const app = express();
 
 // ── Global middleware ─────────────────────────────────────────────────────────
-app.use(helmet());
-app.use(cors());
-app.use(express.json());
+app.use(helmet());          // Cabeceras de seguridad HTTP
+app.use(cors());            // Permite peticiones desde el frontend
+app.use(express.json());    // Parsea el body como JSON
 if (process.env.NODE_ENV !== 'test') {
+  // Morgan se omite en pruebas para no ensuciar la salida del test runner.
   app.use(morgan('dev'));
 }
 
@@ -39,6 +41,7 @@ app.use((_req, res) => {
 });
 
 // ── Centralized error handler (must be last) ──────────────────────────────────
+// Express identifica los manejadores de error por su aridad de 4 parámetros.
 app.use(errorHandler);
 
 export default app;

@@ -2,6 +2,7 @@ import { getDb } from '../database/database.js';
 import type { UserRow, LoginAttemptRow } from '../database/types.js';
 import { AppError } from '../utils/AppError.js';
 
+/** Datos de usuario seguros para exponer en respuestas de la API (sin contraseña). */
 export interface PublicUser {
   id: number;
   name: string;
@@ -11,10 +12,12 @@ export interface PublicUser {
   created_at: string;
 }
 
+/** LoginAttemptRow enriquecido con el nombre del usuario (puede ser null si el email no existía). */
 export interface LoginAttemptWithUser extends LoginAttemptRow {
   user_name: string | null;
 }
 
+/** Devuelve todos los usuarios del sistema sin exponer contraseñas. */
 export function getAllUsers(): PublicUser[] {
   const db = getDb();
   return db
@@ -22,6 +25,10 @@ export function getAllUsers(): PublicUser[] {
     .all() as unknown as PublicUser[];
 }
 
+/**
+ * Devuelve un usuario por ID.
+ * @throws AppError 404 si no existe.
+ */
 export function getUserById(userId: number): PublicUser {
   const db = getDb();
   const user = db
@@ -31,6 +38,11 @@ export function getUserById(userId: number): PublicUser {
   return user;
 }
 
+/**
+ * Bloquea la cuenta de un usuario (is_locked = 1).
+ * El usuario bloqueado no puede iniciar sesión hasta que un admin lo desbloquee.
+ * @throws AppError 404 si no existe.
+ */
 export function lockUser(userId: number): { message: string } {
   const db = getDb();
   const user = db.prepare('SELECT id FROM users WHERE id = ?').get(userId);
@@ -39,6 +51,10 @@ export function lockUser(userId: number): { message: string } {
   return { message: 'User locked successfully' };
 }
 
+/**
+ * Desbloquea la cuenta de un usuario (is_locked = 0).
+ * @throws AppError 404 si no existe.
+ */
 export function unlockUser(userId: number): { message: string } {
   const db = getDb();
   const user = db.prepare('SELECT id FROM users WHERE id = ?').get(userId);
@@ -47,6 +63,10 @@ export function unlockUser(userId: number): { message: string } {
   return { message: 'User unlocked successfully' };
 }
 
+/**
+ * Devuelve los últimos 100 intentos de login de un usuario específico,
+ * ordenados del más reciente al más antiguo.
+ */
 export function getLoginAttempts(userId: number): LoginAttemptRow[] {
   const db = getDb();
   return db
@@ -59,6 +79,10 @@ export function getLoginAttempts(userId: number): LoginAttemptRow[] {
     .all(userId) as unknown as LoginAttemptRow[];
 }
 
+/**
+ * Devuelve los últimos 200 intentos de login del sistema entero,
+ * incluyendo el nombre del usuario si el email correspondía a una cuenta.
+ */
 export function getAllLoginAttempts(): LoginAttemptWithUser[] {
   const db = getDb();
   return db
