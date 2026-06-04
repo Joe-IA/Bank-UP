@@ -1,3 +1,7 @@
+/**
+ * Rutas de cuentas bancarias.
+ * GET /api/accounts/me — perfil del usuario autenticado (nombre, email, saldo, número de cuenta).
+ */
 import { Router, Request, Response, NextFunction } from 'express';
 import { authenticate, authorize } from '../src/middleware/auth.js';
 import { getUserProfile } from '../src/services/accountService.js';

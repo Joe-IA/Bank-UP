@@ -1,8 +1,17 @@
 import { DatabaseSync } from "node:sqlite";
 import { logger } from "../log/logger.js";
 
+/**
+ * Instancia singleton de la base de datos SQLite.
+ * Se inicializa la primera vez que se llama a getDb().
+ */
 let db: DatabaseSync | null = null;
 
+/**
+ * Devuelve la conexión singleton a la base de datos.
+ * En la primera llamada abre el archivo indicado por DB_PATH y activa
+ * WAL mode (mejor concurrencia de lectura) y foreign keys.
+ */
 export function getDb(): DatabaseSync {
     if(!db){
         const dbPath = process.env.DB_PATH!;
@@ -13,6 +22,10 @@ export function getDb(): DatabaseSync {
     return db;
 }
 
+/**
+ * Cierra la conexión a la base de datos y limpia el singleton.
+ * Útil en los tests para aislar cada suite en su propia BD.
+ */
 export function closeDb(): void {
   if (db) {
     db.close();
@@ -20,6 +33,10 @@ export function closeDb(): void {
   }
 }
 
+/**
+ * Ejecuta `fn` dentro de una transacción SQL atómica.
+ * Si `fn` lanza, hace ROLLBACK y re-lanza el error.
+ */
 export function withTransaction<T>(fn: (db:DatabaseSync) => T): T {
     const database = getDb();
     database.exec("BEGIN");
@@ -33,6 +50,16 @@ export function withTransaction<T>(fn: (db:DatabaseSync) => T): T {
     }
 }
 
+/**
+ * Crea las tablas si no existen (idempotente).
+ * Se llama una sola vez al arrancar la aplicación.
+ *
+ * Tablas:
+ * - users          — credenciales y rol
+ * - accounts       — cuenta bancaria vinculada 1-a-1 con un usuario
+ * - transactions   — depósitos y transferencias
+ * - login_attempts — auditoría de intentos de acceso
+ */
 export function initializeSchema(): DatabaseSync {
     const database = getDb();
       database.exec(`
@@ -76,7 +103,7 @@ export function initializeSchema(): DatabaseSync {
     );
   `);
 
-  logger.info("[DB] Schem,a initialized");
+  logger.info("[DB] Schema initialized");
   return database;
 
 }

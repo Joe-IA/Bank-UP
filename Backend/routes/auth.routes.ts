@@ -1,3 +1,8 @@
+/**
+ * Rutas de autenticación — públicas (no requieren JWT).
+ * POST /api/auth/register  — crea usuario y, si el rol es 'user', su cuenta bancaria.
+ * POST /api/auth/login     — valida credenciales y devuelve un token JWT.
+ */
 import { Router, Request, Response, NextFunction } from 'express';
 import { body } from 'express-validator';
 import { validate } from '../src/middleware/validate.js';

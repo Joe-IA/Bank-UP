@@ -1,3 +1,9 @@
+/**
+ * Rutas de transacciones — requieren JWT con rol 'user'.
+ * GET  /api/transactions          — historial del usuario autenticado.
+ * POST /api/transactions/deposit  — deposita fondos en la propia cuenta.
+ * POST /api/transactions/transfer — transfiere fondos a otra cuenta por número.
+ */
 import { Router, Request, Response, NextFunction } from 'express';
 import { body } from 'express-validator';
 import { authenticate, authorize } from '../src/middleware/auth.js';
@@ -6,7 +12,7 @@ import { deposit, transfer, getTransactionHistory } from '../src/services/transa
 
 const router = Router();
 
-// All transaction routes require auth + user role
+// Todas las rutas de este router exigen autenticación y rol 'user'.
 router.use(authenticate, authorize('user'));
 
 // GET /api/transactions

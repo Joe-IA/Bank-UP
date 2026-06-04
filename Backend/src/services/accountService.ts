@@ -2,11 +2,16 @@ import { getDb } from '../database/database.js';
 import type { AccountRow, UserProfile } from '../database/types.js';
 import { AppError } from '../utils/AppError.js';
 
+/** AccountRow enriquecido con el nombre y email del propietario (uso admin). */
 export interface AccountWithOwner extends AccountRow {
   owner_name: string;
   owner_email: string;
 }
 
+/**
+ * Obtiene la cuenta bancaria asociada a un usuario.
+ * @throws AppError 404 si el usuario no tiene cuenta (p. ej. admins).
+ */
 export function getAccountByUserId(userId: number): AccountRow {
   const db = getDb();
   const account = db
@@ -16,6 +21,10 @@ export function getAccountByUserId(userId: number): AccountRow {
   return account;
 }
 
+/**
+ * Obtiene una cuenta por su número (p. ej. "ACC-000002").
+ * @throws AppError 404 si el número no existe.
+ */
 export function getAccountByNumber(accountNumber: string): AccountRow {
   const db = getDb();
   const account = db
@@ -25,6 +34,10 @@ export function getAccountByNumber(accountNumber: string): AccountRow {
   return account;
 }
 
+/**
+ * Obtiene una cuenta por su ID interno.
+ * @throws AppError 404 si no existe.
+ */
 export function getAccountById(accountId: number): AccountRow {
   const db = getDb();
   const account = db
@@ -34,6 +47,7 @@ export function getAccountById(accountId: number): AccountRow {
   return account;
 }
 
+/** Devuelve todas las cuentas del sistema junto con los datos de su propietario. */
 export function getAllAccounts(): AccountWithOwner[] {
   const db = getDb();
   return db
@@ -46,6 +60,10 @@ export function getAllAccounts(): AccountWithOwner[] {
     .all() as unknown as AccountWithOwner[];
 }
 
+/**
+ * Devuelve el perfil público del usuario autenticado incluyendo
+ * número de cuenta y saldo. Los admins tendrán account_number y balance en null.
+ */
 export function getUserProfile(userId: number): UserProfile {
   const db = getDb();
 
